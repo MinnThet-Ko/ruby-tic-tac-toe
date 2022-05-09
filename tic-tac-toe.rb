@@ -24,22 +24,21 @@ class Board
     end
 
     def Board.add_cell(cell) 
-        puts @@grid[cell.row][cell.colomn]
-        @@grid[cell.row][cell.colomn].to_s = cell.type.to_s
+        puts @@grid[cell.row][cell.colomn].to_s
     end
 end
 
 class Cell
-    attr_accessor :row, :colomn, :type
-    def initialize(row, column, type)
+    attr_accessor :row, :colomn, :symbol
+    def initialize(row, column, symbol)
         @row = row
         @column = column
-        @type = type
+        @symbol = symbol
     end
 
     #Methods under this comment are only to be used during development.
     def disply_input
-        puts "Player inserted #{@type} in (#{@row}, #{@column})."
+        puts "Player inserted #{@symbol} in (#{@row}, #{@column})."
     end
 end
 
@@ -53,7 +52,7 @@ while win == false
     column = gets.chomp.to_i
 
     #create a new cell for the round
-    input_cell = Cell.new(row-1, column-1, turns.odd? ? "x" : "o")
+    input_cell = Cell.new(row-1, column-1, turns.odd? ? 1 : 0)
 
     input_cell.disply_input
     puts Board.get_grid
